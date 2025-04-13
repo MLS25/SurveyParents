@@ -1,0 +1,234 @@
+:root {
+    --primary: #2b6777;
+    --accent: #52ab98;
+    --bg: #f2f2f2;
+    --text: #222;
+    --white: #fff;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .form-container {
+    background: var(--white);
+    width: 100%;
+    max-width: 600px;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .form-step {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .form-step.active {
+    display: flex;
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .options label {
+    font-weight: normal;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .buttons button {
+    background: var(--primary);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .buttons button:hover {
+    background: var(--accent);
+  }
+
+  .progress-container {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.5s ease;
+  }
+
+  .popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    display: none;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+  }
+
+  .popup svg {
+    width: 100px;
+    height: 100px;
+    stroke: var(--primary);
+    stroke-width: 6;
+    fill: none;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: draw 1s ease forwards;
+  }
+
+  .popup h3 {
+    margin-top: 20px;
+    font-size: 20px;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .close-popup {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .error-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4c4c;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .error-popup.show {
+    display: block;
+    opacity: 1;
+  }
+
+  .error-popup-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .error-close-btn {
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.2s ease;
+  }
+
+  .error-close-btn:hover {
+    transform: scale(1.2);
+  }
+  #confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+  }
+  
+  .confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff4c4c;
+    opacity: 0;
+    animation: confetti-animation 2s forwards;
+  }
+  
+  @keyframes confetti-animation {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
